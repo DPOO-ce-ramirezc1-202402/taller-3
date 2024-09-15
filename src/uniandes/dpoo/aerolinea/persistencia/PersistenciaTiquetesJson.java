@@ -184,7 +184,7 @@ public class PersistenciaTiquetesJson implements IPersistenciaTiquetes
                 throw new InformacionInconsistenteTiqueteException( "cliente", identificadorCliente );
 
             // Construir y registrar el tiquete
-            Tiquete nuevoTiquete = new Tiquete( codigoTiquete, elVuelo, elCliente, tarifa );
+            Tiquete nuevoTiquete = new Tiquete( codigoTiquete, tarifa, false, elCliente, elVuelo);
             if( tiqueteUsado )
                 nuevoTiquete.marcarComoUsado( );
             GeneradorTiquetes.registrarTiquete( nuevoTiquete );
@@ -208,7 +208,7 @@ public class PersistenciaTiquetesJson implements IPersistenciaTiquetes
             jTiquete.put( CODIGO_RUTA, tiquete.getVuelo( ).getRuta( ).getCodigoRuta( ) );
             jTiquete.put( FECHA, tiquete.getVuelo( ).getFecha( ) );
             jTiquete.put( TARIFA, tiquete.getTarifa( ) );
-            jTiquete.put( USADO, tiquete.esUsado( ) );
+            jTiquete.put( USADO, tiquete.isUsado() );
             jTiquete.put( CLIENTE, tiquete.getCliente( ).getIdentificador( ) );
 
             jTiquetes.put( jTiquete );

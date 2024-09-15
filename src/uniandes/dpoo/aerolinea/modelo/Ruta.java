@@ -5,8 +5,77 @@ package uniandes.dpoo.aerolinea.modelo;
  */
 public class Ruta
 {
-    // TODO completar
+	private String horaSalida;
+	private String horaLlegada;
+	private String codigoRuta;
+	private Aeropuerto origen;
+	private Aeropuerto destino; 
+	
+	public Ruta(Aeropuerto origen, Aeropuerto destino, String horaSalida,String horaLlegada, String codigoRuta) {
+		
+		this.codigoRuta = codigoRuta;
+		this.setDestino(destino);
+		this.setOrigen(origen);
+		this.horaLlegada = horaLlegada;
+		this.horaSalida = horaSalida; 
+	}
+	
+	public String getHoraSalida() {
+		return horaSalida;
+	}
 
+	public void setHoraSalida(String horaSalida) {
+		this.horaSalida = horaSalida;
+	}
+
+	public String getCodigoRuta() {
+		return codigoRuta;
+	}
+
+	public void setCodigoRuta(String codigoRuta) {
+		this.codigoRuta = codigoRuta;
+	}
+
+	public String getHoraLlegada() {
+		return horaLlegada;
+	}
+
+	public void setHoraLlegada(String horaLlegada) {
+		this.horaLlegada = horaLlegada;
+	}
+
+	public Aeropuerto getOrigen() {
+		return origen;
+	}
+
+	public void setOrigen(Aeropuerto origen) {
+		this.origen = origen;
+	}
+
+	public Aeropuerto getDestino() {
+		return destino;
+	}
+
+	public void setDestino(Aeropuerto destino) {
+		this.destino = destino;
+	}
+	
+	public int getDuracion() {
+		
+		int horasSalida = getHoras(horaSalida);
+		int minutosSalida = getMinutos(horaSalida);
+		
+		int horasLlegada = getHoras(horaLlegada);
+		int minutosLlegada = getMinutos(horaLlegada);
+		
+		int totalMinSalida = (horasSalida*60) + minutosSalida;
+		int totalMinLlegada = (horasLlegada*60) + minutosLlegada;
+		
+		if (totalMinLlegada < totalMinSalida ) {
+			totalMinLlegada += 24 * 60;
+		}
+		return totalMinLlegada - totalMinSalida;
+	}
 
     /**
      * Dada una cadena con una hora y minutos, retorna los minutos.
@@ -34,5 +103,8 @@ public class Ruta
         return horas;
     }
 
+	
+	
+	
     
 }
